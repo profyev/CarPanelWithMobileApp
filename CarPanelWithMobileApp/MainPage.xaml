@@ -2,13 +2,134 @@
     x:Class="CarPanelWithMobileApp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CarPanelWithMobileApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:carPanelWithMobileApp="using:CarPanelWithMobileApp"
+    xmlns:controls="using:CarPanelWithMobileApp.Controls"
+    mc:Ignorable="d" Width="1080" Height="1920">
 
-    <Grid>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid Background="Black" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,0,30,0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Text="Дата и время"/>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="Pink" Margin="5">
+                <Image Source="/Assets/appbar.connection.bluetooth.png" Stretch="Uniform"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                <Button IsEnabled="False" Width="100" Height="100" >
+                    <Image Source="/Assets/appbar.map.satellite.png" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                </Button>
+                <ToggleButton x:Name="EnableMusicCenterToggleButton" Margin="15,0" Width="100" Height="100" IsEnabledChanged="EnableMusicCenterToggleButton_IsEnabledChanged" >
+                    <Image Source="/Assets/appbar.music.png" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                </ToggleButton>
+                <Button Width="100" Height="100" IsEnabled="False">
+                    <Image Source="/Assets/appbar.browser.png" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Margin="0,30,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ThanksButton" HorizontalAlignment="Center" Width="150" Height="150" Background="{x:Null}" BorderBrush="#FF4D4D4D" Margin="0,0,0,0" VerticalAlignment="Center" Click="ThanksButton_Click">
+                    <Image Source="/Assets/thanks.png"/>
+                </Button>
+                <ToggleButton x:Name="HazardToggleButton" Grid.Column="1"  Width="150" Height="150" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="#FF4D4D4D"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </Style>
+                    </ToggleButton.Style>
+                    <Image Source="/Assets/hazard.png" Stretch="Uniform"/>
+                </ToggleButton>
+            </Grid>
+            <controls:MediaControl Margin="0,150,0,0" x:Name="MediaControl"/>
+        </StackPanel>
+        <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="SettingsButton" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="SettingsButton_Click">
+                <Image Source="/Assets/appbar.settings.png" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            </Button>
 
+            <Grid Grid.Column="1" Margin="5,0,0,0" Width="90">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="MoreWarmButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0" Background="#FFFF5F5F">
+                    <Image Source="/Assets/up.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+                <Button Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="CurrentTemperatureTextBlock" Text="25" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
+                        <Image Source="/Assets/celsius.png" Width="30" Height="30"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="MoreColdButton" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF5F92FF">
+                    <Image Source="/Assets/down.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+            </Grid>
+            <Button x:Name="CurrentWindDirectionButton" Grid.Column="2" Margin="5,0,0,0" Width="80" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                <Image Source="/Assets/olny_face.png" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Width="72" Height="72"/>
+            </Button>
+
+            <Grid Grid.Column="3" Margin="5,0,0,0" HorizontalAlignment="Center" Width="90">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="MoreWindPowerButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0">
+                    <Image Source="/Assets/up.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+                <Button Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold">
+                    <TextBlock x:Name="WindStrengthTextBlock" Text="100%" FontSize="30" HorizontalAlignment="Center" TextAlignment="Justify" FontWeight="Bold" FontStyle="Normal"/>
+                </Button>
+                <Button x:Name="LessWindPowerButton" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Source="/Assets/down.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+            </Grid>
+            <Grid Grid.Column="4" HorizontalAlignment="Center" Width="90">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="VolumeUpButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0">
+                    <Image Source="/Assets/up.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+                <Button x:Name="MuteButton" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Source="/Assets/mute.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+                <Button x:Name="VolumeDownButton" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Source="/Assets/down.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+            </Grid>
+        </Grid>
+        <ToggleButton x:Name="EnableClimateSystemButton" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Content="On" Height="80" Margin="0,0,0,30" Width="80" FontSize="36"/>
     </Grid>
 </Page>
